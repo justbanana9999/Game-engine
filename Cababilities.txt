@@ -1,0 +1,5 @@
+Image rotation around center, squeezing and scaling
+
+Text rendering with fonts either from SysFont or from a path
+
+Display handling and drawing shapes on it
