@@ -1,29 +1,30 @@
-from Engine import Display,Image,Object,Input,Sound,Font
+from Engine.All import *
 
 screen = Display((800,800),60)
 
 cat = Object(Image('Cat2.png',0.2),[400,400])
 
-cat.squeeze.x = 2
-
-a = 0
-
 inputs = Input()
 
-song = Sound('meow.mp3',0.5)
+song = Sound('meow.mp3',0.1)
 
 song.play()
 
 meow = Sound('Cat meow sound effect.mp3',0.5)
 
-arr:list[list[float]] = []
+arr:list[posLike] = []
 
 frame = 0
+offset = 0
 
 font = Font('consolas',20)
 
+tileset = Tileset(8,'Tileset.png',2)
+
 while Display.checkExit():
     screen.fill((20,20,20))
+
+    screen.drawTileset([[0,-1,0,-1,-1,2],[3,-1,4,-1,5,6],[-1,-1,-1,1,-1,-1]],(10,20),tileset)
 
     cat.vel.y += 1
 
@@ -47,7 +48,15 @@ while Display.checkExit():
 
     if cat.pos.y >= 800:
         cat.pos.y = 800
-        cat.vel.y = -30
+        cat.vel.y = -35
+
+    if cat.pos.y >= 700 and cat.vel.y < 0:
+
+        cat.squeeze.x = 1.2
+        cat.squeeze.y = 0.5
+    else:
+        cat.squeeze.x = 1/(abs(cat.vel.y)/100+1)
+        cat.squeeze.y = abs(cat.vel.y)/50+1
     
     if cat.pos.x <= 0:
         cat.pos.x = 0
@@ -63,21 +72,27 @@ while Display.checkExit():
     frame += 1
     if frame >= 2:
         frame = 0
+        offset += 1
+        offset %= 4
         arr.append(list(cat.pos))
 
-    if len(arr) > 20:
-        del arr[0]
+        if len(arr) > 20:
+            del arr[0]
+    
+    screen.lines((0,255,0),False,arr)
 
-    screen.lines((0,255,0),False,arr) # type: ignore
-
+    s = 0
     for i,pos in enumerate(arr):
-        tObj = Object(cat.surface,pos,cat.size-(20-i)/20,cat.angle,squeeze=cat.squeeze)
-        screen.blitObject(tObj)
+        s += cat.size/len(arr)
+        tObj = Object(cat.surface,pos,s,cat.angle)
+        screen.blitObject(tObj,(0,0,255) if (i+offset)%2 == 0 else None,'overlay' if (i+offset)%4 == 0 else 'fill')
 
-    screen.blitObject(cat)
+    screen.blitObject(cat,padding=5,paddingColor=(255,255,0))
 
     cat.angle += 2
 
-    screen.blit(font.renderText(f'{screen.getFps()}',(100,100,255)),anchor='TL')
+    screen.circle((0,255,0),inputs.mousePos,10)
+
+    screen.blit(font.renderText(f'{screen.getFps():.2f}',(100,100,255)),anchor='TL')
 
     screen.update()
