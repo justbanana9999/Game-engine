@@ -5,3 +5,6 @@ class Vec2:
     
     def __iter__(self):
         return iter([self.x,self.y])
+    
+    def __neg__(self):
+        return Vec2(-self.x,-self.y)

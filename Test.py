@@ -2,15 +2,15 @@ from Engine.All import *
 
 screen = Display((800,800),60)
 
-cat = Object(Image('Cat2.png',0.2),[400,400])
+cat = Object(Image('Cat/Cat2.png',0.2),[400,400])
 
 inputs = Input()
 
-song = Sound('meow.mp3',0.1)
+song = Sound('Cat/meow.mp3',0.1)
 
 song.play()
 
-meow = Sound('Cat meow sound effect.mp3',0.5)
+meow = Sound('Cat/Cat meow sound effect.mp3',0.5)
 
 arr:list[posLike] = []
 
@@ -19,12 +19,8 @@ offset = 0
 
 font = Font('consolas',20)
 
-tileset = Tileset(8,'Tileset.png',2)
-
 while Display.checkExit():
     screen.fill((20,20,20))
-
-    screen.drawTileset([[0,-1,0,-1,-1,2],[3,-1,4,-1,5,6],[-1,-1,-1,1,-1,-1]],(10,20),tileset)
 
     cat.vel.y += 1
 

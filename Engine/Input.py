@@ -1,8 +1,10 @@
 import pygame
 
+from Engine.Constants import posLike
+
 class Input:
     def __init__(self):
-        self.alphabet = 'q e r t y u i o p a s d f g h j k l z x c v b n m ' \
+        self.alphabet = 'q w e r t y u i o p a s d f g h j k l z x c v b n m ' \
         '1 2 3 4 5 6 7 8 9 0 ' \
         'SPACE LSHIFT RSHIFT LCTRL RCTRL LALT RALT ' \
         'PERIOD COMMA SLASH BACKSLASH TAB ESCAPE SPACE ' \
@@ -30,6 +32,12 @@ class Input:
         
         self.mousePos = pygame.mouse.get_pos()
         self.mouseInput = pygame.mouse.get_pressed()
+    
+    def setMousePos(self,pos:posLike):
+        pygame.mouse.set_pos(pos)
+    
+    def setMouseVisibility(self,visible:bool):
+        pygame.mouse.set_visible(visible)
     
     def updatePressed(self,keys:list[str]=[]):
         if keys:
