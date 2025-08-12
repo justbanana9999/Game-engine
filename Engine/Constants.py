@@ -1,11 +1,10 @@
 circle:list[tuple[float,float]] = []
 
-import pygame
+colorLike = tuple[int,int,int]|tuple[int,int,int,int]|list[int]
 
-colorLike = pygame.typing.ColorLike
-posLike = pygame.typing.Point
-posIntLike = pygame.typing.IntPoint
-rectLike = pygame.typing.RectLike
+posLike = tuple[float,float]|list[float]
+posIntLike = tuple[int,int]|list[int]
+rectLike = tuple[float,float,float,float]|list[float]
 
 from math import sin,cos,radians
 

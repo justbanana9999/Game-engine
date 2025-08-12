@@ -1,7 +1,10 @@
 from copy import copy
 
-import ctypes
-ctypes.windll.user32.SetProcessDPIAware()
+try:
+    import ctypes
+    ctypes.windll.user32.SetProcessDPIAware()
+except:
+    pass
 
 import pygame
 
