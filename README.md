@@ -4,4 +4,6 @@ I have included an example file that showcases the capabilities of this game eng
 
 All files and folders other than **Engine** is just to showcase the game engine. You only need **Engine** to make great games :)
 
+Look at the example projects to see what the engine is capable of, and how to use it.
+
 I have not used AI, except for Mistral for tips on how to make a good game engine.
