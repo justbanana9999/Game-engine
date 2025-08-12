@@ -2,8 +2,6 @@ Making a "game engine" using PyGame, all in one file. The user can import module
 
 I have included an example file that showcases the capabilities of this game engine, and will be updated to showcase new features that will be added.
 
-<<<<<<< HEAD
+All files and folders other than **Engine** is just to showcase the game engine. You only need **Engine** to make great games :)
+
 I have not used AI, except for Mistral for tips on how to make a good game engine.
-=======
-I have not used AI, except for Mistral for tips on how to make a good game engine.
->>>>>>> b268001f260ae63d9e25e67bdb747864a0f45981
