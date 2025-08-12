@@ -10,7 +10,7 @@ inputs = Input()
 
 inputs.setMouseVisibility(False)
 
-while screen.checkExit():
+while checkExit():
 
     screen.fill((20,20,20))
     

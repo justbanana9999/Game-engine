@@ -19,7 +19,7 @@ offset = 0
 
 font = Font('consolas',20)
 
-while Display.checkExit():
+while checkExit():
     screen.fill((20,20,20))
 
     cat.vel.y += 1

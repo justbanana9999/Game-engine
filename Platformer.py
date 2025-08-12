@@ -14,7 +14,7 @@ player = Object(Image('Cat/Cat2.png',0.5),[0,0])
 
 inputs = Input()
 
-while screen.checkExit():
+while checkExit():
     
     screen.fill((20,20,20))
     

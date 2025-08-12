@@ -129,13 +129,6 @@ class Display:
         pygame.display.update()
         self.clock.tick(self.fps)
     
-    @staticmethod
-    def checkExit():
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                return False
-        return True
-
     def circle(self,color:colorLike,pos:posLike,radius:int,width:int=0):
         pygame.draw.circle(self.surface,color,pos,radius,width)
     
@@ -178,3 +171,9 @@ class Display:
     
     def getFps(self):
         return self.clock.get_fps()
+
+def checkExit():
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                return False
+        return True
