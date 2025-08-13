@@ -7,27 +7,27 @@ from Engine.Vec2 import Vec2
 class Image:
     def __init__(self,path:str|pygame.Surface,size:float=1):
         if isinstance(path,pygame.Surface):
-            self.image = path
+            self.surface = path
         else:
-            self.image = pygame.image.load(path).convert_alpha()
+            self.surface = pygame.image.load(path).convert_alpha()
 
         self.updateSize()
 
-        self.image = pygame.transform.scale(self.image,(self.width*size,self.height*size))
+        self.surface = pygame.transform.scale(self.surface,(self.width*size,self.height*size))
 
         self.updateSize()
 
     def updateSize(self):
-        self.size = self.image.size
-        self.width = self.image.width
-        self.height = self.image.height
+        self.size = self.surface.size
+        self.width = self.surface.width
+        self.height = self.surface.height
 
     @staticmethod
     def rotate(img:'Image|pygame.Surface',angle:float=0,pos:Vec2=Vec2()):
         if isinstance(img,pygame.Surface):
             img = Image(img)
-        rotated = pygame.transform.rotate(img.image,-angle)
-        rect = rotated.get_rect(center=img.image.get_rect(center=(list(pos))).center)
+        rotated = pygame.transform.rotate(img.surface,-angle)
+        rect = rotated.get_rect(center=img.surface.get_rect(center=(list(pos))).center)
         return rotated,rect
 
     @staticmethod
@@ -46,3 +46,13 @@ class Image:
         surf.blit(s,special_flags=pygame.BLEND_RGB_MULT)
 
         return surf
+    
+    @staticmethod
+    def roundedBorders(img:'Image',radius:int):
+        surf = img.surface
+        mask = pygame.Surface(img.size,pygame.SRCALPHA)
+        pygame.draw.rect(mask,(255,255,255,255),mask.get_rect(),border_radius=radius)
+        rounded = surf.copy()
+        rounded.blit(mask,special_flags=pygame.BLEND_RGBA_MULT)
+        img.surface = rounded
+        return img

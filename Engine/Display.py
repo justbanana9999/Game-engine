@@ -35,15 +35,15 @@ class Display:
     def fill(self,color:colorLike):
         self.surface.fill(color)
     
-    def blit(self,surface:Image|pygame.Surface,pos:Vec2=Vec2(),size:float=1,angle:float=0,anchor:str=''):
+    def blit(self,surface:Image|pygame.Surface,pos:Vec2|posLike=Vec2(),size:float=1,angle:float=0,anchor:str=''):
         img = surface
 
         if isinstance(img,pygame.Surface):
             img = Image(img)
 
-        s = img.image.size
+        s = img.surface.size
 
-        img.image = pygame.transform.scale(img.image,(s[0]*size,s[1]*size))
+        img.surface = pygame.transform.scale(img.surface,(s[0]*size,s[1]*size))
 
         img,rect = Image.rotate(img,angle,pos)
         
@@ -73,9 +73,9 @@ class Display:
     def blitObject(self,obj:Object,fillcolor:colorLike|None=None,fillType:str='fill',padding:int=0,paddingColor:colorLike=(0,0,0,0)):
         img = copy(obj.surface)
 
-        s = img.image.size
+        s = img.surface.size
 
-        img.image = pygame.transform.scale(img.image,(s[0]*obj.size,s[1]*obj.size))
+        img.surface = pygame.transform.scale(img.surface,(s[0]*obj.size,s[1]*obj.size))
 
         img,rect = Image.rotate(img,obj.angle,obj.pos)
 
