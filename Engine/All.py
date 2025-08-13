@@ -12,3 +12,5 @@ from Engine.File import File
 from Engine.ThreeDim import Object3D,Cam3D,moveF,moveF2,moveR
 
 from Engine.Constants import colorLike,posLike,posIntLike,rectLike,circleArr
+
+from Engine.Math import sin,cos,tan
