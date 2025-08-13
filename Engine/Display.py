@@ -21,8 +21,11 @@ from math import dist
 from Engine.Vec3 import Vec3
 
 class Display:
-    def __init__(self,size:posIntLike,fps:int=60):
-        self.surface = pygame.display.set_mode(size)
+    def __init__(self,size:posIntLike,fps:int=60,fullScreen:bool=False):
+        if fullScreen:
+            self.surface = pygame.display.set_mode(size,pygame.FULLSCREEN)
+        else:
+            self.surface = pygame.display.set_mode(size)
         self.clock = pygame.time.Clock()
         self.fps = fps
         
