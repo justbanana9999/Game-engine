@@ -11,4 +11,4 @@ from Engine.Input import Input
 from Engine.File import File
 from Engine.ThreeDim import Object3D,Cam3D,moveF,moveF2,moveR
 
-from Engine.Constants import colorLike,posLike,posIntLike,rectLike
+from Engine.Constants import colorLike,posLike,posIntLike,rectLike,circleArr

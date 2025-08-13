@@ -8,7 +8,7 @@ except:
 
 import pygame
 
-from Engine.Constants import posIntLike,colorLike,circle,posLike,rectLike
+from Engine.Constants import posIntLike,colorLike,circleArr,posLike,rectLike
 
 from Engine.Image import Image
 from Engine.Object import Object
@@ -92,7 +92,7 @@ class Display:
         if padding:
             img2 = copy(img)
             img2 = Image.fillColor(img2,paddingColor)
-            for x,y in circle:
+            for x,y in circleArr:
                 self.surface.blit(img2,rect.move(x*padding,y*padding))
 
         if fillcolor != None:

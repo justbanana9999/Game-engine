@@ -1,4 +1,4 @@
-circle:list[tuple[float,float]] = []
+circleArr:list[tuple[float,float]] = []
 
 colorLike = tuple[int,int,int]|tuple[int,int,int,int]|list[int]
 
@@ -9,4 +9,4 @@ rectLike = tuple[float,float,float,float]|list[float]
 from math import sin,cos,radians
 
 for i in range(0,360,10):
-    circle.append((sin(radians(i)),cos(radians(i))))
+    circleArr.append((sin(radians(i)),cos(radians(i))))
