@@ -1,6 +1,6 @@
 import pygame
 
-from Engine.Constants import colorLike
+from Engine.Constants import colorLike,rectLike
 
 from Engine.Vec2 import Vec2
 
@@ -48,10 +48,22 @@ class Image:
         return surf
     
     @staticmethod
-    def roundedBorders(img:'Image',radius:int):
+    def aaBorder(surf:pygame.Surface,rect:rectLike,radius:int):
+        pygame.draw.rect(surf,(255,255,255),(rect[0]+radius,rect[1],rect[2]-2*radius,rect[3]))
+        pygame.draw.rect(surf,(255,255,255),(rect[0],rect[1]+radius,rect[2],rect[3]-2*radius))
+        pygame.draw.aacircle(surf,(255,255,255),(rect[0]+radius,rect[1]+radius),radius)
+        pygame.draw.aacircle(surf,(255,255,255),(rect[0]+rect[2]-radius,rect[1]+radius),radius)
+        pygame.draw.aacircle(surf,(255,255,255),(rect[0]+radius,rect[1]+rect[3]-radius),radius)
+        pygame.draw.aacircle(surf,(255,255,255),(rect[0]+rect[2]-radius,rect[1]+rect[3]-radius),radius)
+
+    @staticmethod
+    def roundedBorders(img:'Image',radius:int,antiAliasing:bool=True):
         surf = img.surface
         mask = pygame.Surface(img.size,pygame.SRCALPHA)
-        pygame.draw.rect(mask,(255,255,255,255),mask.get_rect(),border_radius=radius)
+        if antiAliasing:
+            Image.aaBorder(mask,list(mask.get_rect()),radius)
+        else:
+            pygame.draw.rect(mask,(255,255,255),mask.get_rect(),border_radius=radius)
         rounded = surf.copy()
         rounded.blit(mask,special_flags=pygame.BLEND_RGBA_MULT)
         img.surface = rounded
